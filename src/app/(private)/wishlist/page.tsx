@@ -4,13 +4,16 @@ import sdk from "@/lib/teachable-sdk";
 import { CourseDetailResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   const me = await getMe();
 
+  if (!me) redirect("/");
+
   const wishlist = await prisma.wishlist.findMany({
     where: {
-      user_email: me!.email,
+      user_email: me.email,
     },
   });
 

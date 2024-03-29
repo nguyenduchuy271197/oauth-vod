@@ -4,7 +4,6 @@ import sdk from "@/lib/teachable-sdk";
 import { UsersResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
-import { toast } from "sonner";
 
 export default async function EnrollBtn({ courseId }: { courseId: number }) {
   const me = await getMe();
@@ -12,7 +11,9 @@ export default async function EnrollBtn({ courseId }: { courseId: number }) {
   if (!me)
     return (
       <Button asChild>
-        <Link href="https://sso.teachable.com/secure/2026611/identity/oauth_provider/authorize?client_id=bBK8Q6YNvIXr0KZStKiPp3QXQ8WvRsar&response_type=code&required_scopes=name:read%20email:read&optional_scopes=courses:read">
+        <Link
+          href={`https://sso.teachable.com/secure/2026611/identity/oauth_provider/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&required_scopes=name:read%20email:read&optional_scopes=courses:read`}
+        >
           Login to enroll
         </Link>
       </Button>

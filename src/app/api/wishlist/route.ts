@@ -3,8 +3,6 @@ import prisma from "@/lib/prisma";
 export async function POST(request: Request) {
   const { userEmail, courseId } = await request.json();
 
-  console.log(userEmail, courseId);
-
   try {
     const item = await prisma.wishlist.findFirst({
       where: {
