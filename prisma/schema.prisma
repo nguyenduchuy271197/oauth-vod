@@ -1,0 +1,15 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model Wishlist {
+    id          String   @id @default(uuid()) @map("_id")
+    user_email  String
+    course_id   Int
+    createdDate DateTime @default(now())
+}
